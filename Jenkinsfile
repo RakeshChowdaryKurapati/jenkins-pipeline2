@@ -35,6 +35,19 @@ pipeline {
             }
       }
     }
+        stage ('Nexus upload') {
+
+                steps 
+		{
+                                                                nexusArtifactUploader artifacts: [[artifactId: 'gs-spring-boot-docker', classifier: '', file: 'target/gs-spring-boot-docker-0.1.0.jar', type: 'jar']], credentialsId: 'b6eb63c6-e32d-4b10-b30f-ccac7b7c8525', groupId: 'org.springframework.boot', nexusUrl: 'http://18.224.138.136:8081/', nexusVersion: 'nexus3', protocol: 'http', repository: 'maven-snapshots', version: '0.1.0-SNAPSHOT'
+
+ 
+
+                }
+
+        
+
+            }
         stage('Verify ') {
             steps {
             script {
